@@ -67,3 +67,17 @@ High_risk_Countries = list(dict.fromkeys(High_risk_Countries))
 print("Total number of high risk countries : ", High_risk_Countries.__len__())
 print("List of High risk countries :")
 print(High_risk_Countries)
+
+# Plotting Graph of high risk countries  
+ax = plt.subplot()
+ax.set_facecolor('black')
+ax.tick_params(axis = 'x',color = 'white')
+ax.tick_params(axis = 'y',color = 'white')
+ax.set_title("Death rates of high risk countries",color = 'red')
+plt.xlabel(" Dates ")
+plt.ylabel("Death growing rate")
+
+for country in High_risk_Countries:
+    Death_growing_rate[country].plot(label = country) 
+plt.legend(loc = 'upper left')
+plt.show() 
