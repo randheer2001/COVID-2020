@@ -1,6 +1,7 @@
 import pandas as pd 
 import matplotlib.pyplot as plt 
 from pandas import DataFrame
+import os
 
 confirmed = pd.read_csv("time_series_covid19_confirmed_global.csv")
 deaths = pd.read_csv("time_series_covid19_deaths_global.csv")
@@ -26,14 +27,21 @@ for day in range(0,len(confirmed)):
 countries_list = []
 confirmed_countries = confirmed_countries_list.copy()
 Confirmed_Countries = list(dict.fromkeys(confirmed_countries))
-print(Confirmed_Countries)
-n = int(input("\nEnter the number 'n' to see the death growing rate of 'n' different countries : "))
-print("Enter the name of countries by seeing in above Printed list for which you have to see death growing rate :\n")
+
+#Making file for data on the desktop
+os.chdir("C:\\Users\\HP\\Desktop")
+A = open("Confirmed_countries.txt",'w')
+for i in range (0,len(Confirmed_Countries)):
+    A.write(Confirmed_Countries[i])
+    A.write("\n")
+n = int(input("\nEnter the number of countries you want to check the death growing rate : "))
+print("Enter the name of countries by seeing in the Printed list for which you have to see death growing rate :\n")
 for i in range(1,n+1):
     country_names = str(input())
     countries_list.append(country_names)
 print("Entered countries list by user : ")    
 print(countries_list)
+
 
 # Plotting Graph of entered countries by user 
 ax = plt.subplot()
@@ -66,7 +74,10 @@ for i in range(1,len(confirmed_list)) :
 High_risk_Countries = list(dict.fromkeys(High_risk_Countries))
 print("Total number of high risk countries : ", High_risk_Countries.__len__())
 print("List of High risk countries :")
-print(High_risk_Countries)
+B = open("High_risk_countries.txt",'w')
+for i in range (0,len(High_risk_Countries)):
+    B.write(High_risk_Countries[i])
+    B.write("\n")
 
 # Plotting Graph of high risk countries  
 ax = plt.subplot()
